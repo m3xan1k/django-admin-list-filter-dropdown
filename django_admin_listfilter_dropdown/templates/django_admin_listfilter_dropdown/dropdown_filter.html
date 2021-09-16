@@ -1,6 +1,16 @@
 {% load i18n %}
 <script type="text/javascript">var go_from_select = function(opt) { window.location = window.location.pathname + opt };</script>
-<h3>{% blocktrans with title as filter_title %} By {{ filter_title }} {% endblocktrans %}</h3>
+<h3>
+    {% if title == 'name' %}
+        Фильтр по организации
+    {% elif title == 'is blacklisted' %}
+        Показать чёрный список
+    {% elif title == 'is deleted' %}
+        Показать удалённые
+    {% else %}
+        {{ title }}
+    {% endif %}
+</h3>
 <ul class="admin-filter-{{ title|cut:' ' }}">
 {% if choices %}
     <li>
