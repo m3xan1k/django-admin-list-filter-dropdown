@@ -8,7 +8,15 @@
         onchange="go_from_select(this.options[this.selectedIndex].value)">
     {% for choice in choices %}
         <option{% if choice.selected %} selected="selected"{% endif %}
-         value="{{ choice.query_string|iriencode }}">{{ choice.display }}</option>
+         value="{{ choice.query_string|iriencode }}">
+         {% if choice.display == 'True' %}
+            Да
+         {% elif choise.display == 'False' %}
+            Нет
+         {% else %}
+            {{ choice.display }}
+         {% endif %}
+        </option>
     {% endfor %}
     </select>
     </li>
